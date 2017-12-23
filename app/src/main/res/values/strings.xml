@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">alps-android-TicketingApp</string>
+    <string name="buy">Buy</string>
+    <string name="find">Find</string>
+    <string name="sell">Sell</string>
+    <string name="add">Add</string>
+    <string name="sell_your_ticket">Sell your ticket</string>
+    <string name="add_wanted_ticket">Add wanted ticket</string>
+    <string name="wanted_tickets">Wanted tickets</string>
+</resources>
