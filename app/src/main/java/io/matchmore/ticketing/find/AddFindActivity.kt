@@ -8,6 +8,8 @@ import io.matchmore.sdk.MatchMore
 import io.matchmore.sdk.api.models.Subscription
 import io.matchmore.ticketing.Contract
 import io.matchmore.ticketing.R
+import io.matchmore.ticketing.extensions.showErrorDialog
+import io.matchmore.ticketing.extensions.showProgressDialog
 import kotlinx.android.synthetic.main.activity_add_find.*
 
 class AddFindActivity : AppCompatActivity() {
@@ -29,7 +31,11 @@ class AddFindActivity : AppCompatActivity() {
                 durationView.editText!!.text.toString().toDouble(),
                 "${Contract.PROPERTY_CONCERT}='$concert' and ${Contract.PROPERTY_PRICE}<=$maxPrice"
         )
-        MatchMore.instance.createSubscription(subscription, { _ -> finish() }, Throwable::printStackTrace)
+        val dialog = showProgressDialog()
+        MatchMore.instance.createSubscription(subscription, { _ -> finish() }, {
+            dialog.dismiss()
+            showErrorDialog(it)
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

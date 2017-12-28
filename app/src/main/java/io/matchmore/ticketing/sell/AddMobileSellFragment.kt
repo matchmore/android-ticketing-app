@@ -22,7 +22,7 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
         return inflater.inflate(R.layout.fragment_add_mobile, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val mapFragment = SupportMapFragment.newInstance(GoogleMapOptions().apply { liteMode(true) })
         childFragmentManager.beginTransaction().replace(R.id.map, mapFragment).commit()
         mapFragment.getMapAsync(this)
@@ -40,7 +40,7 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
             put(Contract.PROPERTY_PRICE, priceView.editText!!.text.toString().toDouble().toString())
             put(Contract.PROPERTY_DEVICE_TYPE, "mobile")
         }
-        MatchMore.instance.createPublication(publication, { _ -> activity.finish() }, Throwable::printStackTrace)
+        MatchMore.instance.createPublication(publication, { _ -> activity?.finish() }, Throwable::printStackTrace)
     }
 
     @SuppressLint("MissingPermission")

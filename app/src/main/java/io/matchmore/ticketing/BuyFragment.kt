@@ -21,11 +21,11 @@ class BuyFragment : Fragment() {
     private val matchListener: MatchMonitorListener = { matches, _ -> adapter.updateData(matches.toList()) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        activity.setTitle(R.string.buy)
+        activity?.setTitle(R.string.buy)
         return inflater.inflate(R.layout.fragment_buy, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         matchesList.layoutManager = LinearLayoutManager(context)
         matchesList.addItemDecoration(HorizontalDividerItemDecoration.Builder(context)
                 .color(Color.TRANSPARENT)
