@@ -7,4 +7,8 @@ object Contract {
     const val PROPERTY_DEVICE_TYPE = "deviceType"
     const val PROPERTY_IMAGE = "image"
 
+    const val DEVICE_TYPE_MOBILE = "mobile"
+    const val DEVICE_TYPE_PIN = "pin"
+    const val DEVICE_TYPE_BEACON = "beacon"
+
 }

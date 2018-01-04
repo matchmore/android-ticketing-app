@@ -40,7 +40,7 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
         publication.properties.apply {
             put(Contract.PROPERTY_CONCERT, concertView.editText!!.text.toString())
             put(Contract.PROPERTY_PRICE, priceView.editText!!.text.toString().toDouble().toString())
-            put(Contract.PROPERTY_DEVICE_TYPE, "mobile")
+            put(Contract.PROPERTY_DEVICE_TYPE, Contract.DEVICE_TYPE_MOBILE)
             put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
         }
         val dialog = activity!!.showProgressDialog()
@@ -76,5 +76,4 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
         }
         return false
     }
-
 }
