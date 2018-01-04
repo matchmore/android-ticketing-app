@@ -14,6 +14,8 @@ import io.matchmore.sdk.MatchMore
 import io.matchmore.sdk.api.models.Publication
 import io.matchmore.ticketing.Contract
 import io.matchmore.ticketing.R
+import io.matchmore.ticketing.extensions.showErrorDialog
+import io.matchmore.ticketing.extensions.showProgressDialog
 import kotlinx.android.synthetic.main.fragment_add_mobile.*
 
 class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
@@ -39,8 +41,15 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
             put(Contract.PROPERTY_CONCERT, concertView.editText!!.text.toString())
             put(Contract.PROPERTY_PRICE, priceView.editText!!.text.toString().toDouble().toString())
             put(Contract.PROPERTY_DEVICE_TYPE, "mobile")
+            put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
         }
-        MatchMore.instance.createPublication(publication, { _ -> activity?.finish() }, Throwable::printStackTrace)
+        val dialog = activity!!.showProgressDialog()
+        MatchMore.instance.createPublication(publication,
+                { _ -> activity?.finish() },
+                {
+                    dialog.dismiss()
+                    activity?.showErrorDialog(it)
+                })
     }
 
     @SuppressLint("MissingPermission")
