@@ -19,12 +19,12 @@ class SellFragment : Fragment() {
     private val adapter = SlimAdapter.create()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        activity.setTitle(R.string.sell)
+        activity?.setTitle(R.string.sell)
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_sell, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         publicationsList.layoutManager = LinearLayoutManager(context)
         publicationsList.addItemDecoration(HorizontalDividerItemDecoration.Builder(context)
                 .color(Color.TRANSPARENT)

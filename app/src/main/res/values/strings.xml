@@ -22,4 +22,8 @@
     <string name="image_url">Image URL</string>
     <string name="publish">Publish</string>
     <string name="if_you_reject">If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]\</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="your_publication_is_pinned">Your publication is pinned to a location.</string>
 </resources>

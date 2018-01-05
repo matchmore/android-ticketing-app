@@ -14,6 +14,8 @@ import io.matchmore.sdk.MatchMore
 import io.matchmore.sdk.api.models.Publication
 import io.matchmore.ticketing.Contract
 import io.matchmore.ticketing.R
+import io.matchmore.ticketing.extensions.showErrorDialog
+import io.matchmore.ticketing.extensions.showProgressDialog
 import kotlinx.android.synthetic.main.fragment_add_mobile.*
 
 class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
@@ -22,7 +24,7 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
         return inflater.inflate(R.layout.fragment_add_mobile, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val mapFragment = SupportMapFragment.newInstance(GoogleMapOptions().apply { liteMode(true) })
         childFragmentManager.beginTransaction().replace(R.id.map, mapFragment).commit()
         mapFragment.getMapAsync(this)
@@ -38,9 +40,16 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
         publication.properties.apply {
             put(Contract.PROPERTY_CONCERT, concertView.editText!!.text.toString())
             put(Contract.PROPERTY_PRICE, priceView.editText!!.text.toString().toDouble().toString())
-            put(Contract.PROPERTY_DEVICE_TYPE, "mobile")
+            put(Contract.PROPERTY_DEVICE_TYPE, Contract.DEVICE_TYPE_MOBILE)
+            put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
         }
-        MatchMore.instance.createPublication(publication, { _ -> activity.finish() }, Throwable::printStackTrace)
+        val dialog = activity!!.showProgressDialog()
+        MatchMore.instance.createPublication(publication,
+                { _ -> activity?.finish() },
+                {
+                    dialog.dismiss()
+                    activity?.showErrorDialog(it)
+                })
     }
 
     @SuppressLint("MissingPermission")
@@ -67,5 +76,4 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
         }
         return false
     }
-
 }

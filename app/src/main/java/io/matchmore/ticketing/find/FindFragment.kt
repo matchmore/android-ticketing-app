@@ -18,12 +18,12 @@ class FindFragment : Fragment() {
     private val adapter = SlimAdapter.create()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        activity.setTitle(R.string.wanted_tickets)
+        activity?.setTitle(R.string.wanted_tickets)
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_find, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         subscriptionsList.layoutManager = LinearLayoutManager(context)
         subscriptionsList.addItemDecoration(HorizontalDividerItemDecoration.Builder(context)
                 .color(Color.TRANSPARENT)
