@@ -2,7 +2,6 @@ package io.matchmore.ticketing.sell
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.design.widget.TextInputLayout
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,7 @@ import io.matchmore.sdk.MatchMore
 import io.matchmore.sdk.api.models.Publication
 import io.matchmore.ticketing.Contract
 import io.matchmore.ticketing.R
-import io.matchmore.ticketing.extensions.showErrorDialog
-import io.matchmore.ticketing.extensions.showProgressDialog
+import io.matchmore.ticketing.extensions.*
 import kotlinx.android.synthetic.main.fragment_add_mobile.*
 
 class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
@@ -28,18 +26,21 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
         val mapFragment = SupportMapFragment.newInstance(GoogleMapOptions().apply { liteMode(true) })
         childFragmentManager.beginTransaction().replace(R.id.map, mapFragment).commit()
         mapFragment.getMapAsync(this)
-        addButton.setOnClickListener { if (validate()) add() }
+        radiusView.initValues(R.string.radius_km, 100)
+        durationView.initValues(R.string.duration_days, 30)
+        priceView.initValues(R.string.max_price, 1000)
+        addButton.setOnClickListener { if (concertView.validate()) add() }
     }
 
     private fun add() {
         val publication = Publication(
                 "ticketstosale",
-                rangeView.editText!!.text.toString().toDouble(),
-                durationView.editText!!.text.toString().toDouble()
+                radiusView.value.kmToM(),
+                durationView.value.daysToSec()
         )
         publication.properties.apply {
             put(Contract.PROPERTY_CONCERT, concertView.editText!!.text.toString())
-            put(Contract.PROPERTY_PRICE, priceView.editText!!.text.toString().toDouble().toString())
+            put(Contract.PROPERTY_PRICE, priceView.value.toDouble().toString())
             put(Contract.PROPERTY_DEVICE_TYPE, Contract.DEVICE_TYPE_MOBILE)
             put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
         }
@@ -59,21 +60,5 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
             map.moveCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.builder().zoom(10f).target(latLng).build()))
             map.isMyLocationEnabled = true
         }
-    }
-
-    private fun validate(): Boolean {
-        if (validateEditText(concertView)) return false
-        if (validateEditText(priceView)) return false
-        if (validateEditText(rangeView)) return false
-        if (validateEditText(durationView)) return false
-        return true
-    }
-
-    private fun validateEditText(textInputLayout: TextInputLayout): Boolean {
-        if (textInputLayout.editText!!.text.isEmpty()) {
-            textInputLayout.error = getString(R.string.cant_be_empty)
-            return true
-        }
-        return false
     }
 }

@@ -19,16 +19,19 @@ class AddFindActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_find)
         setTitle(R.string.add_wanted_ticket)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        radiusView.initValues(R.string.radius_km, 100)
+        durationView.initValues(R.string.duration_days, 30)
+        maxPriceView.initValues(R.string.max_price, 1000)
         addButton.setOnClickListener { if (validate()) add() }
     }
 
     private fun add() {
         val concert = concertView.editText!!.text.toString()
-        val maxPrice = maxPriceView.editText!!.text.toString().toDouble()
+        val maxPrice = maxPriceView.value.toDouble()
         val subscription = Subscription(
                 "ticketstosale",
-                rangeView.editText!!.text.toString().toDouble(),
-                durationView.editText!!.text.toString().toDouble(),
+                (radiusView.value * 1000).toDouble(),
+                durationView.value.toDouble() * 60 * 24,
                 "${Contract.PROPERTY_CONCERT}='$concert' and ${Contract.PROPERTY_PRICE}<=$maxPrice"
         )
         val dialog = showProgressDialog()
@@ -45,9 +48,6 @@ class AddFindActivity : AppCompatActivity() {
 
     private fun validate(): Boolean {
         if (validateEditText(concertView)) return false
-        if (validateEditText(maxPriceView)) return false
-        if (validateEditText(rangeView)) return false
-        if (validateEditText(durationView)) return false
         return true
     }
 
