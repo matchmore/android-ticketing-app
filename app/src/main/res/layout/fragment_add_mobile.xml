@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,47 +34,23 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <io.matchmore.ticketing.views.LabelSeekBar
             android:id="@+id/priceView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/concertView">
+            app:layout_constraintTop_toBottomOf="@id/concertView" />
 
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/price"
-                android:inputType="numberDecimal" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/rangeView"
+        <io.matchmore.ticketing.views.LabelSeekBar
+            android:id="@+id/radiusView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/priceView">
+            app:layout_constraintTop_toBottomOf="@id/priceView" />
 
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/range"
-                android:inputType="number" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
+        <io.matchmore.ticketing.views.LabelSeekBar
             android:id="@+id/durationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/rangeView">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/duration"
-                android:inputType="number" />
-
-        </android.support.design.widget.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/radiusView" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/imageView"
@@ -86,8 +62,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/image_url"
-                android:text="@string/defaultImageUrl"
-                android:inputType="textUri" />
+                android:inputType="textUri"
+                android:text="@string/defaultImageUrl" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -95,7 +71,7 @@
             android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:layout_constraintTop_toBottomOf="@id/imageView"/>
+            app:layout_constraintTop_toBottomOf="@id/imageView" />
 
         <Button
             android:id="@+id/addButton"

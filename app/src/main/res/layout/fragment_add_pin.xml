@@ -34,48 +34,23 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <io.matchmore.ticketing.views.LabelSeekBar
             android:id="@+id/priceView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/concertView">
+            app:layout_constraintTop_toBottomOf="@id/concertView" />
 
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/price"
-                android:inputType="number" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/rangeView"
+        <io.matchmore.ticketing.views.LabelSeekBar
+            android:id="@+id/radiusView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/priceView">
+            app:layout_constraintTop_toBottomOf="@id/priceView" />
 
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/range"
-                android:inputType="number" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
+        <io.matchmore.ticketing.views.LabelSeekBar
             android:id="@+id/durationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/rangeView">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/duration"
-                android:inputType="number" />
-
-        </android.support.design.widget.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/radiusView" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/imageView"

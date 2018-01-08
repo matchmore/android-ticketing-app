@@ -7,7 +7,7 @@ android {
     buildToolsVersion "27.0.2"
     defaultConfig {
         applicationId "io.matchmore.ticketing"
-        minSdkVersion 22
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -25,7 +25,7 @@ dependencies {
     implementation 'gun0912.ted:tedpermission:2.1.0'
     implementation 'net.idik:slimadapter:2.1.2'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    implementation 'com.github.matchmore.alps-android-sdk:sdk:367b96401f'
+    implementation 'com.github.matchmore.alps-android-sdk:sdk:040cf97813'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.0.2'
     implementation "com.android.support:design:27.0.2"
@@ -33,3 +33,5 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.google.android.gms:play-services-maps:11.0.4'
 }
+
+apply plugin: 'com.google.gms.google-services'
