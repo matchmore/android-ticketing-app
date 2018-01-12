@@ -30,9 +30,9 @@ class SellFragment : Fragment() {
                 .color(Color.TRANSPARENT)
                 .sizeResId(R.dimen.divider).build())
         adapter.register<Publication>(R.layout.item_publication, { data, injector ->
-            injector.text(R.id.concertView, data.properties[Contract.PROPERTY_CONCERT])
-                    .text(R.id.priceView, data.properties[Contract.PROPERTY_PRICE])
-                    .text(R.id.deviceTypeView, data.properties[Contract.PROPERTY_DEVICE_TYPE])
+            injector.text(R.id.concertView, data.properties[Contract.PROPERTY_CONCERT].toString())
+                    .text(R.id.priceView, data.properties[Contract.PROPERTY_PRICE].toString())
+                    .text(R.id.deviceTypeView, data.properties[Contract.PROPERTY_DEVICE_TYPE].toString())
         }).attachTo(publicationsList)
     }
 

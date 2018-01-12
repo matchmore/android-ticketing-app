@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import io.matchmore.sdk.MatchMore
 import io.matchmore.sdk.api.models.Publication
 import io.matchmore.ticketing.Contract
@@ -28,6 +29,13 @@ class AddBeaconSellFragment : Fragment() {
         addButton.setOnClickListener { if (concertView.validate()) add() }
     }
 
+    override fun onResume() {
+        super.onResume()
+        beacons.adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, MatchMore.instance.knownBeacons.findAll()).apply {
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+    }
+
     private fun add() {
         val publication = Publication(
                 "ticketstosale",
@@ -42,7 +50,10 @@ class AddBeaconSellFragment : Fragment() {
         }
         val dialog = activity!!.showProgressDialog()
         MatchMore.instance.createPublication(publication, beacons.selectedItem.toString(),
-                { _ -> activity?.finish() },
+                { _ ->
+                    dialog.dismiss()
+                    activity?.finish()
+                },
                 {
                     dialog.dismiss()
                     activity?.showErrorDialog(it)

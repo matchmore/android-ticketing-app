@@ -62,7 +62,10 @@ class AddPinSellFragment : Fragment(), OnMapReadyCallback {
                 put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
             }
             MatchMore.instance.createPublication(publication,
-                    { _ -> activity?.finish() },
+                    { _ ->
+                        dialog.dismiss()
+                        activity?.finish()
+                    },
                     {
                         dialog.dismiss()
                         activity?.showErrorDialog(it)

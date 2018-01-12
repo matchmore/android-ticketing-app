@@ -40,13 +40,16 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
         )
         publication.properties.apply {
             put(Contract.PROPERTY_CONCERT, concertView.editText!!.text.toString())
-            put(Contract.PROPERTY_PRICE, priceView.value.toDouble().toString())
+            put(Contract.PROPERTY_PRICE, priceView.value.toDouble())
             put(Contract.PROPERTY_DEVICE_TYPE, Contract.DEVICE_TYPE_MOBILE)
             put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
         }
         val dialog = activity!!.showProgressDialog()
         MatchMore.instance.createPublication(publication,
-                { _ -> activity?.finish() },
+                { _ ->
+                    dialog.dismiss()
+                    activity?.finish()
+                },
                 {
                     dialog.dismiss()
                     activity?.showErrorDialog(it)
