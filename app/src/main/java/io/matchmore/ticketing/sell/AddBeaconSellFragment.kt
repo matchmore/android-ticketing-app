@@ -31,7 +31,8 @@ class AddBeaconSellFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        beacons.adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, MatchMore.instance.knownBeacons.findAll()).apply {
+        val beaconsId = MatchMore.instance.knownBeacons.findAll().map { it.id }
+        beaconList.adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, beaconsId).apply {
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         }
     }
@@ -44,12 +45,12 @@ class AddBeaconSellFragment : Fragment() {
         )
         publication.properties.apply {
             put(Contract.PROPERTY_CONCERT, concertView.editText!!.text.toString())
-            put(Contract.PROPERTY_PRICE, priceView.value.toDouble().toString())
+            put(Contract.PROPERTY_PRICE, priceView.value.toDouble())
             put(Contract.PROPERTY_DEVICE_TYPE, Contract.DEVICE_TYPE_BEACON)
             put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
         }
         val dialog = activity!!.showProgressDialog()
-        MatchMore.instance.createPublication(publication, beacons.selectedItem.toString(),
+        MatchMore.instance.createPublication(publication, beaconList.selectedItem.toString(),
                 { _ ->
                     dialog.dismiss()
                     activity?.finish()

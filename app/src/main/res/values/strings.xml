@@ -27,4 +27,5 @@
     <string name="radius_km">RADIUS: %1$d km</string>
     <string name="duration_days">DURATION: %1$d days</string>
     <string name="your_publication_will_be_advised_with_bt">Your publication will be advised with the given Bluetooth Low Energy iBeacon.</string>
+    <string name="device">Device</string>
 </resources>
