@@ -32,10 +32,14 @@ class AddFindActivity : AppCompatActivity() {
                 "ticketstosale",
                 (radiusView.value * 1000).toDouble(),
                 durationView.value.toDouble() * 60 * 24,
-                "${Contract.PROPERTY_CONCERT}='$concert' and ${Contract.PROPERTY_PRICE}<=$maxPrice"
+                "${Contract.PROPERTY_CONCERT}='$concert' and ${Contract.PROPERTY_PRICE} <= $maxPrice"
         )
+        subscription.pushers = mutableListOf("${MatchMore.instance.main?.deviceToken}")
         val dialog = showProgressDialog()
-        MatchMore.instance.createSubscription(subscription, { _ -> finish() }, {
+        MatchMore.instance.createSubscription(subscription, { _ ->
+            dialog.dismiss()
+            finish()
+        }, {
             dialog.dismiss()
             showErrorDialog(it)
         })

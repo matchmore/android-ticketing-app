@@ -9,18 +9,15 @@ import android.widget.Toast
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import io.matchmore.sdk.MatchMore
+import io.matchmore.ticketing.extensions.showErrorDialog
 
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        MatchMore.instance.startUsingMainDevice(
-                { _ ->
-                    checkLocationPermission()
-                }, Throwable::printStackTrace)
+        MatchMore.instance.startUsingMainDevice({ _ -> checkLocationPermission() }, { showErrorDialog(it) })
     }
-
 
     private fun checkLocationPermission() {
         val permissionListener = object : PermissionListener {

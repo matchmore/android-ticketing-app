@@ -61,20 +61,28 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/beacons"
+        <TextView
+            android:id="@+id/beaconsLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintTop_toBottomOf="@id/imageView"/>
+            android:text="@string/device"
+            app:layout_constraintTop_toBottomOf="@id/imageView"
+            android:padding="4dp" />
+
+        <Spinner
+            android:id="@+id/beaconList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            app:layout_constraintTop_toBottomOf="@id/beaconsLabel"/>
 
         <Button
             android:id="@+id/addButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/publish"
-            app:layout_constraintTop_toBottomOf="@id/beacons" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/beaconList" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -57,12 +57,15 @@ class AddPinSellFragment : Fragment(), OnMapReadyCallback {
             )
             publication.properties.apply {
                 put(Contract.PROPERTY_CONCERT, concertView.editText!!.text.toString())
-                put(Contract.PROPERTY_PRICE, priceView.value.toDouble().toString())
+                put(Contract.PROPERTY_PRICE, priceView.value.toDouble())
                 put(Contract.PROPERTY_DEVICE_TYPE, Contract.DEVICE_TYPE_PIN)
                 put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
             }
             MatchMore.instance.createPublication(publication,
-                    { _ -> activity?.finish() },
+                    { _ ->
+                        dialog.dismiss()
+                        activity?.finish()
+                    },
                     {
                         dialog.dismiss()
                         activity?.showErrorDialog(it)
