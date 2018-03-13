@@ -11,7 +11,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import io.matchmore.sdk.MatchMore
-import io.matchmore.sdk.api.models.Location
+import io.matchmore.sdk.api.models.MatchMoreLocation
 import io.matchmore.sdk.api.models.PinDevice
 import io.matchmore.sdk.api.models.Publication
 import io.matchmore.ticketing.Contract
@@ -43,7 +43,7 @@ class AddPinSellFragment : Fragment(), OnMapReadyCallback {
 
     private fun add() {
         val dialog = activity!!.showProgressDialog()
-        val location = Location(
+        val location = MatchMoreLocation(
                 latitude = latitudeView.editText!!.text.toString().toDouble(),
                 longitude = longitudeView.editText!!.text.toString().toDouble()
         )

@@ -25,7 +25,7 @@ dependencies {
     implementation 'gun0912.ted:tedpermission:2.1.0'
     implementation 'net.idik:slimadapter:2.1.2'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    implementation 'com.github.matchmore.alps-android-sdk:sdk:934a540d5d'
+    implementation 'com.github.matchmore.alps-android-sdk:sdk:0.6.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.0.2'
     implementation "com.android.support:design:27.0.2"
