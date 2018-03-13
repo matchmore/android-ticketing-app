@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "949305301096",
+    "firebase_url": "https://alps-android-ticketingapp.firebaseio.com",
+    "project_id": "alps-android-ticketingapp",
+    "storage_bucket": "alps-android-ticketingapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949305301096:android:218531604747b0b1",
+        "android_client_info": {
+          "package_name": "io.matchmore.ticketing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949305301096-lfbt6642s7tfelmnvulvr1c66lii22fs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.matchmore.ticketing",
+            "certificate_hash": "c37f8f845bdfc95a956822fee22920d4fa0a6a70"
+          }
+        },
+        {
+          "client_id": "949305301096-k84rr3miefem6coejm64jg6fjk2r9ln9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsEwYG85KABR5_i2ssvPmJeorYqR3OwXs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949305301096-k84rr3miefem6coejm64jg6fjk2r9ln9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
