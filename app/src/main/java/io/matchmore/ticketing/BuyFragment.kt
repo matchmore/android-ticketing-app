@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
-import io.matchmore.sdk.MatchMore
+import io.matchmore.sdk.Matchmore
 import io.matchmore.sdk.api.models.Match
 import io.matchmore.sdk.monitoring.MatchMonitorListener
 import kotlinx.android.synthetic.main.fragment_buy.*
@@ -18,7 +18,7 @@ class BuyFragment : Fragment() {
 
     private val adapter = SlimAdapter.create()
 
-    private val matchListener: MatchMonitorListener = { _, _ -> adapter.updateData(MatchMore.instance.matches.toList()) }
+    private val matchListener: MatchMonitorListener = { _, _ -> adapter.updateData(Matchmore.instance.matches.toList()) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         activity?.setTitle(R.string.buy)
@@ -30,19 +30,19 @@ class BuyFragment : Fragment() {
         matchesList.addItemDecoration(HorizontalDividerItemDecoration.Builder(context)
                 .color(Color.TRANSPARENT)
                 .sizeResId(R.dimen.divider).build())
-        adapter.register<Match>(R.layout.item_publication, { data, injector ->
+        adapter.register<Match>(R.layout.item_publication) { data, injector ->
             data.publication?.let {
                 injector.text(R.id.concertView, it.properties[Contract.PROPERTY_CONCERT].toString())
                         .text(R.id.priceView, it.properties[Contract.PROPERTY_PRICE].toString())
                         .text(R.id.deviceTypeView, it.properties[Contract.PROPERTY_DEVICE_TYPE].toString())
             }
-        }).attachTo(matchesList)
-        adapter.updateData(MatchMore.instance.matches.toList())
-        MatchMore.instance.matchMonitor.addOnMatchListener(matchListener)
+        }.attachTo(matchesList)
+        adapter.updateData(Matchmore.instance.matches.toList())
+        Matchmore.instance.matchMonitor.addOnMatchListener(matchListener)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        MatchMore.instance.matchMonitor.removeOnMatchListener(matchListener)
+        Matchmore.instance.matchMonitor.removeOnMatchListener(matchListener)
     }
 }

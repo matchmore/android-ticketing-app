@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import io.matchmore.sdk.MatchMore
+import io.matchmore.sdk.Matchmore
 import io.matchmore.sdk.api.models.Publication
 import io.matchmore.ticketing.Contract
 import io.matchmore.ticketing.R
@@ -31,7 +31,7 @@ class AddBeaconSellFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val beaconsId = MatchMore.instance.knownBeacons.findAll().map { it.id }
+        val beaconsId = Matchmore.instance.knownBeacons.findAll().map { it.id }
         beaconList.adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, beaconsId).apply {
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         }
@@ -50,7 +50,7 @@ class AddBeaconSellFragment : Fragment() {
             put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
         }
         val dialog = activity!!.showProgressDialog()
-        MatchMore.instance.createPublication(publication, beaconList.selectedItem.toString(),
+        Matchmore.instance.createPublication(publication, beaconList.selectedItem.toString(),
                 { _ ->
                     dialog.dismiss()
                     activity?.finish()
