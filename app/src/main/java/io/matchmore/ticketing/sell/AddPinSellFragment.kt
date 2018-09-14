@@ -10,8 +10,8 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import io.matchmore.sdk.MatchMore
-import io.matchmore.sdk.api.models.MatchMoreLocation
+import io.matchmore.sdk.Matchmore
+import io.matchmore.sdk.api.models.MatchmoreLocation
 import io.matchmore.sdk.api.models.PinDevice
 import io.matchmore.sdk.api.models.Publication
 import io.matchmore.ticketing.Contract
@@ -43,12 +43,12 @@ class AddPinSellFragment : Fragment(), OnMapReadyCallback {
 
     private fun add() {
         val dialog = activity!!.showProgressDialog()
-        val location = MatchMoreLocation(
+        val location = MatchmoreLocation(
                 latitude = latitudeView.editText!!.text.toString().toDouble(),
                 longitude = longitudeView.editText!!.text.toString().toDouble()
         )
         val pinDevice = PinDevice("pin device ${System.currentTimeMillis()}", location)
-        MatchMore.instance.createPinDevice(pinDevice, { device ->
+        Matchmore.instance.createPinDevice(pinDevice, { device ->
             val publication = Publication(
                     "ticketstosale",
                     radiusView.value.kmToM(),
@@ -61,7 +61,7 @@ class AddPinSellFragment : Fragment(), OnMapReadyCallback {
                 put(Contract.PROPERTY_DEVICE_TYPE, Contract.DEVICE_TYPE_PIN)
                 put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
             }
-            MatchMore.instance.createPublication(publication,
+            Matchmore.instance.createPublicationForMainDevice(publication,
                     { _ ->
                         dialog.dismiss()
                         activity?.finish()
@@ -79,7 +79,7 @@ class AddPinSellFragment : Fragment(), OnMapReadyCallback {
     private fun validate() = concertView.validate() && latitudeView.validate() && longitudeView.validate()
 
     override fun onMapReady(map: GoogleMap) {
-        MatchMore.instance.locationManager.lastLocation?.let {
+        Matchmore.instance.locationManager.lastLocation?.let {
             val latLng = LatLng(it.latitude!!, it.longitude!!)
             map.moveCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.builder().zoom(10f).target(latLng).build()))
             marker = map.addMarker(MarkerOptions().position(latLng))

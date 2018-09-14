@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.TextInputLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import io.matchmore.sdk.MatchMore
+import io.matchmore.sdk.Matchmore
 import io.matchmore.sdk.api.models.Subscription
 import io.matchmore.ticketing.Contract
 import io.matchmore.ticketing.R
@@ -34,9 +34,9 @@ class AddFindActivity : AppCompatActivity() {
                 durationView.value.toDouble() * 60 * 24,
                 "${Contract.PROPERTY_CONCERT}='$concert' and ${Contract.PROPERTY_PRICE} <= $maxPrice"
         )
-        subscription.pushers = mutableListOf("${MatchMore.instance.main?.deviceToken}")
+        subscription.pushers = mutableListOf("${Matchmore.instance.main?.deviceToken}")
         val dialog = showProgressDialog()
-        MatchMore.instance.createSubscription(subscription, { _ ->
+        Matchmore.instance.createSubscriptionForMainDevice(subscription, { _ ->
             dialog.dismiss()
             finish()
         }, {

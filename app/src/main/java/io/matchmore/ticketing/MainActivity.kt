@@ -3,7 +3,7 @@ package io.matchmore.ticketing
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import io.matchmore.sdk.MatchMore
+import io.matchmore.sdk.Matchmore
 import io.matchmore.ticketing.find.FindFragment
 import io.matchmore.ticketing.sell.SellFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,12 +18,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        MatchMore.instance.matchMonitor.startPollingMatches()
+        Matchmore.instance.matchMonitor.startPollingMatches()
     }
 
     override fun onPause() {
         super.onPause()
-        MatchMore.instance.matchMonitor.stopPollingMatches()
+        Matchmore.instance.matchMonitor.stopPollingMatches()
     }
 
     private fun prepareNavigation(savedInstanceState: Bundle?) {

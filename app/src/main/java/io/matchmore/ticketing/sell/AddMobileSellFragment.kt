@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-import io.matchmore.sdk.MatchMore
+import io.matchmore.sdk.Matchmore
 import io.matchmore.sdk.api.models.Publication
 import io.matchmore.ticketing.Contract
 import io.matchmore.ticketing.R
@@ -45,7 +45,7 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
             put(Contract.PROPERTY_IMAGE, imageView.editText!!.text.toString())
         }
         val dialog = activity!!.showProgressDialog()
-        MatchMore.instance.createPublication(publication,
+        Matchmore.instance.createPublicationForMainDevice(publication,
                 { _ ->
                     dialog.dismiss()
                     activity?.finish()
@@ -58,7 +58,7 @@ class AddMobileSellFragment : Fragment(), OnMapReadyCallback {
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(map: GoogleMap) {
-        MatchMore.instance.locationManager.lastLocation?.let {
+        Matchmore.instance.locationManager.lastLocation?.let {
             val latLng = LatLng(it.latitude!!, it.longitude!!)
             map.moveCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.builder().zoom(10f).target(latLng).build()))
             map.isMyLocationEnabled = true

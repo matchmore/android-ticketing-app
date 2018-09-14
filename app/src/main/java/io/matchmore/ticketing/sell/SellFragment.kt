@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
-import io.matchmore.sdk.MatchMore
+import io.matchmore.sdk.Matchmore
 import io.matchmore.sdk.api.models.Publication
 import io.matchmore.ticketing.Contract
 import io.matchmore.ticketing.R
@@ -29,16 +29,16 @@ class SellFragment : Fragment() {
         publicationsList.addItemDecoration(HorizontalDividerItemDecoration.Builder(context)
                 .color(Color.TRANSPARENT)
                 .sizeResId(R.dimen.divider).build())
-        adapter.register<Publication>(R.layout.item_publication, { data, injector ->
+        adapter.register<Publication>(R.layout.item_publication) { data, injector ->
             injector.text(R.id.concertView, data.properties[Contract.PROPERTY_CONCERT].toString())
                     .text(R.id.priceView, data.properties[Contract.PROPERTY_PRICE].toString())
                     .text(R.id.deviceTypeView, data.properties[Contract.PROPERTY_DEVICE_TYPE].toString())
-        }).attachTo(publicationsList)
+        }.attachTo(publicationsList)
     }
 
     override fun onResume() {
         super.onResume()
-        adapter.updateData(MatchMore.instance.publications.findAll())
+        adapter.updateData(Matchmore.instance.publications.findAll())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

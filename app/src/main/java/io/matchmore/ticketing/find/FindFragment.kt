@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
-import io.matchmore.sdk.MatchMore
+import io.matchmore.sdk.Matchmore
 import io.matchmore.sdk.api.models.Subscription
 import io.matchmore.ticketing.R
 import kotlinx.android.synthetic.main.fragment_find.*
@@ -28,14 +28,14 @@ class FindFragment : Fragment() {
         subscriptionsList.addItemDecoration(HorizontalDividerItemDecoration.Builder(context)
                 .color(Color.TRANSPARENT)
                 .sizeResId(R.dimen.divider).build())
-        adapter.register<Subscription>(R.layout.item_subscription, { data, injector ->
+        adapter.register<Subscription>(R.layout.item_subscription) { data, injector ->
             injector.text(R.id.subscriptionId, data.id).text(R.id.selector, data.selector)
-        }).attachTo(subscriptionsList)
+        }.attachTo(subscriptionsList)
     }
 
     override fun onResume() {
         super.onResume()
-        adapter.updateData(MatchMore.instance.subscriptions.findAll())
+        adapter.updateData(Matchmore.instance.subscriptions.findAll())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
