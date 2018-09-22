@@ -14,7 +14,7 @@ fun Activity.showErrorDialog(throwable: Throwable): MaterialDialog {
     throwable.printStackTrace()
     return MaterialDialog.Builder(this)
             .neutralText(android.R.string.ok)
-            .onNeutral({ dialog, _ -> dialog.dismiss() })
+            .onNeutral { dialog, _ -> dialog.dismiss() }
             .content(throwable.localizedMessage)
             .show()
 }
