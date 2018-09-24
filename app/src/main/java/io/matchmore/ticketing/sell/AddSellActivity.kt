@@ -36,7 +36,7 @@ class AddPagerAdapter(private val context: Context, fm: FragmentManager) : Fragm
                 else -> throw IllegalStateException()
             }
 
-    override fun getPageTitle(position: Int) =
+    override fun getPageTitle(position: Int): String =
             context.getString(
                     when (position) {
                         0 -> R.string.mobile
